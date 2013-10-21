@@ -1,0 +1,35 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  	<display-name>Social Barter</display-name>
+
+  	<!-- Context Parameters -->
+	<context-param>
+	    <param-name>log4jConfigLocation</param-name>
+	    <param-value>WEB-INF/logging.xml</param-value>
+	</context-param>
+
+	<context-param>
+	    <description>Application specific web app root key for Spring Log4j configuration</description>
+	    <param-name>webAppRootKey</param-name>
+	    <param-value>cms-clickmap.root</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+
+	<!-- Context Listeners -->
+	<listener>
+	    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+
+	<listener>
+	    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+
+</web-app>
