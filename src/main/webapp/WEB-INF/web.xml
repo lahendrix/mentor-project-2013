@@ -12,12 +12,6 @@
 	</context-param>
 
 	<context-param>
-	    <description>Application specific web app root key for Spring Log4j configuration</description>
-	    <param-name>webAppRootKey</param-name>
-	    <param-value>cms-clickmap.root</param-value>
-	</context-param>
-
-	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>WEB-INF/applicationContext.xml</param-value>
 	</context-param>
@@ -29,7 +23,7 @@
 
 	<listener>
 	    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+	</listener> 
 
 
 </web-app>
