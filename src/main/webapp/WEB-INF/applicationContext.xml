@@ -7,9 +7,17 @@
 	default-autowire="no">
 
 	<bean id="greeter" class="org.lahendrix.socialbarter.Greeter">
-		<property name="message" value="Hello, world!"/>
+		<property name="message" value="Hello from Spring!"/>
 	</bean>
 
-
+	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+	    destroy-method="close">
+	    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+	    <property name="url" value="jdbc:mysql://localhost:3306/social_barter" />
+	    <property name="username" value="social_admin" />
+		<property name="password" value="develop" />
+	    <property name="initialSize" value="50" />
+	    <property name="maxActive" value="255" />
+	</bean>
 
 </beans>
