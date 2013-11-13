@@ -25,5 +25,24 @@
 	    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener> 
 
+	<servlet>
+		<servlet-name>Greeter</servlet-name>
+		<servlet-class>org.lahendrix.socialbarter.servlet.GreeterServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>UserController</servlet-name>
+		<servlet-class>org.lahendrix.socialbarter.servlet.UserController</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Greeter</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>UserController</servlet-name>
+		<url-pattern>/UserController</url-pattern>
+	</servlet-mapping>
 
 </web-app>
