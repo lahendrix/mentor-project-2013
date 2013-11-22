@@ -18,14 +18,60 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+import org.springframework.web.servlet.ModelAndView;
 
-
-public class UserController extends HttpServlet {
+@Controller
+public class UserController {
 
 	@Autowired
 	private DataSource dataSource;
 	
+	@RequestMapping( value="/users/", method = {RequestMethod.GET})
+	@ResponseStatus(HttpStatus.OK)
+
+	public ModelAndView getUsers(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+		try {
+			try {
+				Connection connection = this.dataSource.getConnection("social_admin", "develop");
+				Statement query = connection.createStatement();
+				query.execute("SELECT username FROM user");
+				ResultSet results = query.getResultSet();
+				
+				List<String> names = new ArrayList();
+				while (results.next()) {
+					String name = results.getString("username");
+					names.add(name);
+				}
+				
+				PrintWriter writer = response.getWriter();
+				writer.println("<html><head><title>User List</title></head><body>");
+				writer.println("<h3>Names</h3>");
+				writer.println("<ul>");
+				for (String name : names) {
+					writer.println("<li>");
+					writer.println(name);
+					writer.println("</li>");
+				}
+				writer.println("</ul>");
+				writer.println("</body></html>");
+				
+				
+			} catch (SQLException e) {
+				throw new ServletException(e);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	/*
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
@@ -63,7 +109,7 @@ public class UserController extends HttpServlet {
 			throw new ServletException(e);
 		}
 		
-	}
+	}*/
 
 	
 }

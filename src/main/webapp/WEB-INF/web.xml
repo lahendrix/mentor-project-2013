@@ -24,7 +24,18 @@
 	<listener>
 	    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener> 
+	
+	<servlet>
+        <servlet-name>socialbarter</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>socialbarter</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+    <!--  
 	<servlet>
 		<servlet-name>Greeter</servlet-name>
 		<servlet-class>org.lahendrix.socialbarter.servlet.GreeterServlet</servlet-class>
@@ -44,5 +55,5 @@
 		<servlet-name>UserController</servlet-name>
 		<url-pattern>/UserController</url-pattern>
 	</servlet-mapping>
-
+	-->
 </web-app>
